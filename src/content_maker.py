@@ -5,12 +5,15 @@ from contents.input import ask_search_term, ask_prefix
 
 def main():
 
+    # data struct
+    content = {}
+
     # ask search term and prefix
-    search_term = ask_search_term()
-    prefix = ask_prefix()
+    ask_search_term(content)
+    ask_prefix(content)
 
     # fetch content wikipedia
-    wikipedia_content = fetch_content_from_wikipedia(search_term)
+    fetch_content_from_wikipedia(content)    
 
 if __name__ == "__main__":
     main()

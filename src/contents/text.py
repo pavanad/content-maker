@@ -3,9 +3,12 @@
 
 import wikipedia
 
-def fetch_content_from_wikipedia(search_term):
+def fetch_content_from_wikipedia(content):
     print('> [text-collection] Starting...')
     print('> [text-collection] Fetching content from wikipedia')
-    wikipedia_response = wikipedia.page(search_term)
+
+    wikipedia_response = wikipedia.page(content['search_term'])
+    content['source_content_original'] = wikipedia_response.content
+    
     print('> [text-collection] Fetching done')
-    return wikipedia_response.content
+    
