@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 
+from contents.input import ask_prefix, ask_search_term
 from contents.text import fetch_content_from_wikipedia
-from contents.input import ask_search_term, ask_prefix
+
 
 def main():
 
@@ -13,7 +14,8 @@ def main():
     ask_prefix(content)
 
     # fetch content wikipedia
-    fetch_content_from_wikipedia(content)    
+    fetch_content_from_wikipedia(content)
+
 
 if __name__ == "__main__":
     main()
