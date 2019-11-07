@@ -11,7 +11,7 @@ def main():
 
     # ask search term and prefix
     ask_search_term(content)
-    ask_prefix(content)
+    # ask_prefix(content)
 
     # fetch content wikipedia
     fetch_content_from_wikipedia(content)
