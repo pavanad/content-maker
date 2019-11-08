@@ -1,11 +1,21 @@
 # -*- coding: utf-8 -*-
 
-from collections import ask_search_term, ask_prefix
+from contents.input import ask_prefix, ask_search_term
+from contents.text import fetch_content_from_wikipedia
+
 
 def main():
-    search_term = ask_search_term()
-    prefix = ask_prefix()
+
+    # data struct
+    content = {}
+
+    # ask search term and prefix
+    ask_search_term(content)
+    # ask_prefix(content)
+
+    # fetch content wikipedia
+    fetch_content_from_wikipedia(content)
+
 
 if __name__ == "__main__":
     main()
-
