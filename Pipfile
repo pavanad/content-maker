@@ -10,6 +10,7 @@ bpython = "*"
 [packages]
 wikipedia = "*"
 nltk = "*"
+google-api-python-client = "*"
 
 [requires]
 python_version = "3.7"
