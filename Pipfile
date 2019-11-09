@@ -11,6 +11,7 @@ bpython = "*"
 wikipedia = "*"
 nltk = "*"
 google-api-python-client = "*"
+python-dotenv = "*"
 
 [requires]
 python_version = "3.7"
