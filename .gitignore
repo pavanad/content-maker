@@ -106,3 +106,5 @@ venv.bak/
 Pipfile.lock
 
 .vscode
+
+.DS_Store

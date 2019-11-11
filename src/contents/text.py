@@ -1,10 +1,13 @@
 # -*- coding: utf-8 -*-
 
 import re
+from collections import defaultdict
+from heapq import nlargest
 from string import punctuation
 
 import wikipedia
 from nltk.corpus import stopwords
+from nltk.probability import FreqDist
 from nltk.tokenize import sent_tokenize, word_tokenize
 
 
@@ -37,13 +40,34 @@ def content_to_sentences(content: dict):
     sentences = sent_tokenize(content["source_content_sanitize"])
     stopwords_list = set(stopwords.words("english") + list(punctuation))
 
-    for sentence in sentences:
-        keywords = get_keywords(sentence, stopwords_list)
-        content_sentences.append({"text": sentence, "keywords": keywords, "images": []})
+    words_without_stopwords = get_keywords(
+        content["source_content_sanitize"], stopwords_list
+    )
+
+    frequency = FreqDist(words_without_stopwords)
+    important_sentences = defaultdict(int)
+
+    for index, sentence in enumerate(sentences):
+        for w in word_tokenize(sentence.lower()):
+            if w in frequency:
+                important_sentences[index] += frequency[w]
+
+    # get 20% of sentences for resume
+    resume_size = int(len(sentences) * 0.2)
+    idx_important_sentences = nlargest(
+        resume_size, important_sentences, important_sentences.get
+    )
+
+    # save in struct
+    for index in sorted(idx_important_sentences):
+        keywords = get_keywords(sentences[index], stopwords_list)
+        content_sentences.append(
+            {"text": sentences[index], "keywords": keywords, "images": []}
+        )
 
     content["sentences"] = content_sentences
 
 
 def get_keywords(sentence: str, stopwords_list: set) -> list:
-    words = word_tokenize(sentence)
+    words = word_tokenize(sentence.lower())
     return [w for w in words if w not in stopwords_list]
