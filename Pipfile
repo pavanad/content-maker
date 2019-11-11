@@ -12,6 +12,7 @@ wikipedia = "*"
 nltk = "*"
 google-api-python-client = "*"
 python-dotenv = "*"
+requests = "*"
 
 [requires]
 python_version = "3.7"
