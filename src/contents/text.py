@@ -16,7 +16,9 @@ def fetch_content_from_wikipedia(content: dict):
     print("> [text-collection] Fetching content from wikipedia")
 
     wikipedia_response = wikipedia.page(content["search_term"])
+    content["source_content_title"] = wikipedia_response.title
     content["source_content_original"] = wikipedia_response.content
+
     sanitize_content(content)
     content_to_sentences(content)
 
