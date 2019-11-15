@@ -33,14 +33,14 @@ def fetch_images_all_sentences(content: dict):
 def download_images(images: list, sentence_index: int):
     downloaded_images = []
     for i, url in enumerate(images):
-        response = requests.get(url)
         try:
+            response = requests.get(url)
             if response.status_code != 200:
                 raise Exception("Bad request in url of the image")
             if url in downloaded_images:
                 raise Exception("Image already downloaded")
 
-            with open(f"data/images/{sentence_index}-org.png", "wb") as image:
+            with open(f"data/images/{sentence_index}.png", "wb") as image:
                 image.write(response.content)
                 image.close()
 

@@ -12,7 +12,7 @@ from nltk.tokenize import sent_tokenize, word_tokenize
 
 
 def fetch_content_from_wikipedia(content: dict):
-    print("> [text-collection] Starting...")
+    print("\n> [text-collection] Starting...")
     print("> [text-collection] Fetching content from wikipedia")
 
     wikipedia_response = wikipedia.page(content["search_term"])
