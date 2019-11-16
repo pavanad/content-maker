@@ -3,6 +3,7 @@
 import os
 
 import requests
+from colorama import Fore
 from googleapiclient.discovery import build
 
 # google credentials
@@ -14,7 +15,7 @@ resource = build("customsearch", "v1", developerKey=API_KEY).cse()
 
 
 def fetch_images_from_google(content: dict):
-    print("> [images-collection] Starting...")
+    print(f"> {Fore.CYAN}[images-collection]{Fore.RESET} Starting...")
     fetch_images_all_sentences(content)
 
 
@@ -23,14 +24,17 @@ def fetch_images_all_sentences(content: dict):
     for i, sentence in enumerate(sentences):
         query = f"{content['search_term']} {sentence['keywords'][0]}"
         result = resource.list(q=query, cx=CSE_KEY, searchType="image").execute()
-        print(f"> [images-collection] Querying Google Images with: {query}")
+        print(
+            f"> {Fore.CYAN}[images-collection]{Fore.RESET} Querying Google Images with: {Fore.YELLOW}{query}{Fore.RESET}"
+        )
         sentence["images"] = [item["link"] for item in result["items"]]
         sentence["google_search_query"] = query
 
-        download_images(sentence["images"], i)
+        references = content["references"]
+        download_images(references, sentence["images"], i)
 
 
-def download_images(images: list, sentence_index: int):
+def download_images(references: list, images: list, sentence_index: int):
     downloaded_images = []
     for i, url in enumerate(images):
         try:
@@ -44,11 +48,13 @@ def download_images(images: list, sentence_index: int):
                 image.write(response.content)
                 image.close()
 
+            references.append(url)
             downloaded_images.append(url)
             print(
-                f"> [images-collection] [{sentence_index}][{i}] Image successfully downloaded: {url}"
+                f"> {Fore.CYAN}[images-collection]{Fore.RESET} [{sentence_index}][{i}] Image {Fore.GREEN}successfully{Fore.RESET} downloaded: {url}"
             )
             break
         except Exception as e:
-            print(f"> [images-collection] [{sentence_index}][{i}] Error ({url}): {e}")
-
+            print(
+                f"> {Fore.CYAN}[images-collection]{Fore.RESET} [{sentence_index}][{i}] {Fore.RED}Error{Fore.RESET} ({url}): {Fore.RED}{e}{Fore.RESET}"
+            )

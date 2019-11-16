@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+from colorama import Fore
+
 from contents.article import create_pdf_article
 from contents.images import fetch_images_from_google
 from contents.input import ask_prefix, ask_search_term
@@ -25,10 +27,9 @@ def main():
         create_pdf_article(content)
 
     except Exception as e:
-        print("\n> [content-maker] Search term not found\n")
+        print(f"\n> {Fore.CYAN}[content-maker]{Fore.RESET} {Fore.RED}Search term not found{Fore.RESET}\n")
         print(str(e))
 
 
 if __name__ == "__main__":
     main()
-
