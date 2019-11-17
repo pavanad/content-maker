@@ -27,7 +27,7 @@ def main():
         create_pdf_article(content)
 
     except Exception as e:
-        print(f"\n> {Fore.CYAN}[content-maker]{Fore.RESET} {Fore.RED}Search term not found{Fore.RESET}\n")
+        print(f"\n> {Fore.CYAN}[content-maker]{Fore.RESET} {Fore.RED}{str(e)}{Fore.RESET}\n")
         print(str(e))
 
 
