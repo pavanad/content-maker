@@ -22,10 +22,10 @@ def publish_content(content: dict):
     # upload file to google drive
     print(f"\n> {Fore.CYAN}[publish-content]{Fore.RESET} Upload file to google drive")
 
-    # id of the folder Contet Maker in my google drive
+    # id of the folder contet maker in my google drive
     file_drive = drive.CreateFile(
         {
-            "title": "spiderman.pdf",
+            "title": f"{search_term}.pdf",
             "parents": [
                 {"kind": "drive#fileLink", "id": "1q7bFqbvu8jzMeR3SJIDjniPfbzkG7N3R"}
             ],
