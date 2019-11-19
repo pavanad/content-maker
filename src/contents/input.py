@@ -2,7 +2,7 @@
 
 
 def ask_search_term(content: dict):
-    content["search_term"] = input("Type a Wikipedia search term: ")
+    content["search_term"] = input("\nType a Wikipedia search term: ")
 
 
 def ask_prefix(content: dict):

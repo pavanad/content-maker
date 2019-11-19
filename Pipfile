@@ -13,6 +13,8 @@ nltk = "*"
 google-api-python-client = "*"
 python-dotenv = "*"
 requests = "*"
+reportlab = "*"
+colorama = "*"
 
 [requires]
 python_version = "3.7"

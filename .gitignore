@@ -108,3 +108,5 @@ Pipfile.lock
 .vscode
 
 .DS_Store
+
+data/
