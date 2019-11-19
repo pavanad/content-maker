@@ -5,6 +5,7 @@ from colorama import Fore
 from contents.article import create_pdf_article
 from contents.images import fetch_images_from_google
 from contents.input import ask_prefix, ask_search_term
+from contents.publish import publish_content
 from contents.text import fetch_content_from_wikipedia
 
 
@@ -15,9 +16,7 @@ def main():
 
     try:
 
-        # ask search term and prefix
         ask_search_term(content)
-        # ask_prefix(content)
 
         # fetch content wikipedia and google images
         fetch_content_from_wikipedia(content)
@@ -26,8 +25,13 @@ def main():
         # create article
         create_pdf_article(content)
 
+        # publish content
+        publish_content(content)
+
     except Exception as e:
-        print(f"\n> {Fore.CYAN}[content-maker]{Fore.RESET} {Fore.RED}{str(e)}{Fore.RESET}\n")
+        print(
+            f"\n> {Fore.CYAN}[content-maker]{Fore.RESET} {Fore.RED}{str(e)}{Fore.RESET}\n"
+        )
         print(str(e))
 
 
