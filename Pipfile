@@ -15,6 +15,7 @@ python-dotenv = "*"
 requests = "*"
 reportlab = "*"
 colorama = "*"
+pydrive = "*"
 
 [requires]
 python_version = "3.7"
