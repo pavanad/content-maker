@@ -20,7 +20,7 @@ def publish_content(content: dict):
     filename = f"data/{search_term}.pdf"
 
     # upload file to google drive
-    print(f"\n> {Fore.CYAN}[publish-content]{Fore.RESET} Upload file to google drive")
+    print(f"> {Fore.CYAN}[publish-content]{Fore.RESET} Upload file to google drive")
 
     # id of the folder contet maker in my google drive
     file_drive = drive.CreateFile(

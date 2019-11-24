@@ -15,7 +15,7 @@ resource = build("customsearch", "v1", developerKey=API_KEY).cse()
 
 
 def fetch_images_from_google(content: dict):
-    print(f"> {Fore.CYAN}[images-collection]{Fore.RESET} Starting...")
+    print(f"\n> {Fore.CYAN}[images-collection]{Fore.RESET} Starting...")
     fetch_images_all_sentences(content)
 
 
