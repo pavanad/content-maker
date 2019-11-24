@@ -12,7 +12,7 @@ from reportlab.platypus import Image, Paragraph, SimpleDocTemplate, Spacer
 
 def create_pdf_article(content: dict):
 
-    print(f"> {Fore.CYAN}[create-article]{Fore.RESET} Starting...")
+    print(f"\n> {Fore.CYAN}[create-article]{Fore.RESET} Starting...")
 
     content_pdf = []
     search_term = content["search_term"].lower().replace(" ", "-")
@@ -40,7 +40,9 @@ def create_pdf_article(content: dict):
     content_pdf += add_references(content["references"])
 
     pdf.build(content_pdf)
-    print(f"> {Fore.CYAN}[create-article]{Fore.RESET} {Fore.GREEN}Article created{Fore.RESET}")
+    print(
+        f"> {Fore.CYAN}[create-article]{Fore.RESET} {Fore.GREEN}Article created{Fore.RESET}"
+    )
 
 
 def add_sentences_and_images(sentences: list) -> list:
@@ -49,11 +51,12 @@ def add_sentences_and_images(sentences: list) -> list:
         content.append(Paragraph(sentence["text"], get_styles()["Justify"]))
         content.append(Spacer(1, 6))
 
-        filename = f"data/images/{index}.png"
-        if index % 5 == 0 and os.path.exists(filename):
-            image = Image(filename, 5 * inch, 4 * inch)
-            content.append(image)
-            content.append(Spacer(1, 6))
+        if len(sentence["images"]):
+            filename = f"data/images/{index}.png"
+            if index % 5 == 0 and os.path.exists(filename):
+                image = Image(filename, 5 * inch, 4 * inch)
+                content.append(image)
+                content.append(Spacer(1, 6))
 
     return content
 
