@@ -16,11 +16,16 @@ def fetch_content_from_wikipedia(content: dict):
     print(f"\n> {Fore.CYAN}[text-collection]{Fore.RESET} Starting...")
     print(f"> {Fore.CYAN}[text-collection]{Fore.RESET} Fetching content from wikipedia")
 
+    # set language for search
+    wikipedia.set_lang(content["language"])
+
+    # fech content from wikipedia
     wikipedia_response = wikipedia.page(content["search_term"])
     content["source_content_title"] = wikipedia_response.title
     content["source_content_original"] = wikipedia_response.content
     content["references"] = [wikipedia_response.url]
 
+    # sanitize and convert to sentences
     sanitize_content(content)
     content_to_sentences(content)
 
@@ -44,7 +49,8 @@ def content_to_sentences(content: dict):
 
     content_sentences = []
     sentences = sent_tokenize(content["source_content_sanitize"])
-    stopwords_list = set(stopwords.words("english") + list(punctuation))
+    language = {"en": "english", "pt": "portuguese"}.get(content["language"], "english")
+    stopwords_list = set(stopwords.words(language) + list(punctuation))
 
     words_without_stopwords = get_keywords(
         content["source_content_sanitize"], stopwords_list
