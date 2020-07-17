@@ -5,8 +5,8 @@ File: .env
 Use python dotenv to set enviroment variable
 
 ```
-GOOGLE_CSE_KEY=<YOU KEY HERE>
-GOOGLE_API_KEY=<YOU KEY HERE>
+GOOGLE_CSE_KEY=<YOUR KEY HERE>
+GOOGLE_API_KEY=<YOUR KEY HERE>
 ```
 
 ## Google search api
